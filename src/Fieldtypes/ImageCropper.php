@@ -10,6 +10,9 @@ class ImageCropper extends Fieldtype
     protected $categories = ['media'];
     protected $icon = 'assets';
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configFieldItems(): array
     {
         return [
@@ -39,24 +42,22 @@ class ImageCropper extends Fieldtype
     }
 
     /**
-     * Pre-process the data before it gets sent to the publish page.
-     *
-     * @param mixed $data
-     * @return array|mixed
+     * {@inheritdoc}
      */
-    public function preProcess($data)
+    public function augment($value)
     {
-        return $data;
-    }
+        if (is_array($value)) {
+            return collect($value)
+                ->map(function ($data) {
+                    if ($data) {
+                        $data['crop'] = "{$data['width']},{$data['height']},{$data['x']},{$data['y']}";
+                    }
 
-    /**
-     * Process the data before it gets saved.
-     *
-     * @param mixed $data
-     * @return array|mixed
-     */
-    public function process($data)
-    {
-        return $data;
+                    return $data;
+                })
+                ->all();
+        }
+
+        return $value;
     }
 }

@@ -72,11 +72,12 @@ export default {
                 responsive: true,
                 zoomable: false,
                 crop: evt => {
-                    const { detail: { x, y, width } } = evt
+                    const { detail: { x, y, width, height } } = evt
                     this.$emit('input', {
                         x: Math.max(0, Math.round(x)),
                         y: Math.max(0, Math.round(y)),
                         width: Math.round(width),
+                        height: Math.round(height),
                     })
                 },
             })

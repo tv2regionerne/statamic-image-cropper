@@ -4,7 +4,7 @@
             <button
                 v-for="dimension in dimensions"
                 :key="dimension.key"
-                class="btn mx-.5 w-24"
+                class="btn mx-.5"
                 :class="{ 'text-primary': crops[dimension.key] !== null }"
                 @click="openCropper(dimension)"
             >
