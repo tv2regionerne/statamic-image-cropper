@@ -1,0 +1,24 @@
+{
+    "name": "tv2regionerne/statamic-image-cropper",
+    "type": "statamic-addon",
+    "description": "Image cropping fieldtype for Statamic",
+    "require": {
+        "statamic/cms": "3.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tv2regionerne\\StatamicImageCropper\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Image Cropper",
+            "description": "Statamic Image Cropper addon"
+        },
+        "laravel": {
+            "providers": [
+                "Tv2regionerne\\StatamicImageCropper\\ServiceProvider"
+            ]
+        }
+    }
+}
