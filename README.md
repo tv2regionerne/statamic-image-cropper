@@ -1,7 +1,8 @@
 # Image Cropper
 
 <!-- statamic:hide -->
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/tv2regionerne/statamic-image-cropper)](https://github.com/tv2regionerne/statamic-image-cropper/releases)
+[![Packagist](https://img.shields.io/packagist/v/tv2regionerne/statamic-image-cropper.svg?style=flat-square)](https://packagist.org/packages/tv2regionerne/statamic-image-cropper)
+[![Downloads](https://img.shields.io/packagist/dt/tv2regionerne/statamic-image-cropper.svg?style=flat-square)](https://packagist.org/packages/tv2regionerne/statamic-image-cropper)
 [![Supported Statamic version](https://img.shields.io/badge/Statamic-3.4%2B-FF269E)](https://github.com/statamic/cms/releases)
 <!-- /statamic:hide -->
 
