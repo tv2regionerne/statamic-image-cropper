@@ -44,4 +44,9 @@ After setting up the fieldtype and have chosen an image, you get the option to s
 Selecting a dimension will trigger the cropping overlay, and once you're happy with your crop you press `Save`:
 <img src="images/fieldtype-cropping.png" />
 
+In a template you can then use the crop as so;
+```antlers
+<img src="{{ glide:image :crop="crops:16_9:crop" }}" />
+```
+
 Enjoy cropping away!
