@@ -49,7 +49,7 @@ class ImageCropper extends Fieldtype
         if (is_array($value)) {
             return collect($value)
                 ->map(function ($data) {
-                    if ($data) {
+                    if ($data && isset($data['width'], $data['height'], $data['x'], $data['y'])) {
                         $data['crop'] = "{$data['width']},{$data['height']},{$data['x']},{$data['y']}";
                     }
 

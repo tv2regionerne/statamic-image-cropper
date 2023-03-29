@@ -3,6 +3,7 @@
 <!-- statamic:hide -->
 [![Packagist](https://img.shields.io/packagist/v/tv2regionerne/statamic-image-cropper.svg?style=flat-square)](https://packagist.org/packages/tv2regionerne/statamic-image-cropper)
 [![Downloads](https://img.shields.io/packagist/dt/tv2regionerne/statamic-image-cropper.svg?style=flat-square)](https://packagist.org/packages/tv2regionerne/statamic-image-cropper)
+[![License](https://img.shields.io/github/license/tv2regionerne/statamic-image-cropper.svg?style=flat-square)](LICENSE)
 [![Supported Statamic version](https://img.shields.io/badge/Statamic-3.4%2B-FF269E)](https://github.com/statamic/cms/releases)
 <!-- /statamic:hide -->
 
@@ -44,7 +45,7 @@ After setting up the fieldtype and have chosen an image, you get the option to s
 Selecting a dimension will trigger the cropping overlay, and once you're happy with your crop you press `Save`:
 <img src="images/fieldtype-cropping.png" />
 
-In a template you can then use the crop as so;
+In a template you can then use the crop as so:
 ```antlers
 <img src="{{ glide:image :crop="crops:16_9:crop" }}" />
 ```
