@@ -2,6 +2,21 @@
     "name": "tv2regionerne/statamic-image-cropper",
     "type": "statamic-addon",
     "description": "Image cropping fieldtype for Statamic",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/tv2regionerne/statamic-image-cropper/issues"
+    },
+    "authors": [
+        {
+            "name": "Sylvester Damgaard",
+            "email": "syda@tv2reg.dk",
+            "role": "Systems Architect"
+        },
+        {
+            "name": "Frederik Sauer",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "statamic/cms": "3.4.*"
     },
