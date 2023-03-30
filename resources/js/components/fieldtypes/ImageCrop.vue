@@ -32,7 +32,6 @@ export default {
     },
     data() {
         return {
-            initial: this.value,
             cropper: null,
             dimension: null,
         }
@@ -83,12 +82,8 @@ export default {
             })
         },
         handleReset() {
-            if (this.initial) {
-                this.cropper.setData(this.initial)
-            } else {
-                this.cropper.reset()
-            }
-            this.$emit('input', this.initial)
+            this.cropper.reset()
+            this.$emit('input', null)
         },
     },
 }
