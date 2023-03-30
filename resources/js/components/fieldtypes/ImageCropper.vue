@@ -44,8 +44,11 @@ export default {
     computed: {
         dimensions() {
             return Object.entries(this.config.dimensions).map(([key, label]) => {
-                const [width, height] = key.split('_')
-                const ratio = width / height
+                let ratio = null
+                if (key.includes('_')) {
+                    const [width, height] = key.split('_')
+                    ratio = width / height
+                }
 
                 return { key, label, ratio }
             })

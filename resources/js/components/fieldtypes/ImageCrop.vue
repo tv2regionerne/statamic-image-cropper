@@ -6,9 +6,32 @@
             </div>
         </div>
         <div class="field-w-1/4 px-1">
-            <div ref="preview" class="overflow-hidden cropper-bg" :style="previewStyle" />
+            <div ref="preview" class="overflow-hidden">
+                <img :src="source" />
+            </div>
 
-            <button class="btn mt-2" @click="handleReset">{{ __('Reset') }}</button>
+            <div class="flex">
+                <button class="btn mt-2" @click="handleReset">{{ __('Reset') }}</button>
+
+                <dl class="inline-block mt-2 ml-2 text-sm" v-if="value">
+                    <div class="flex border-1 border-grey-40 rounded">
+                        <dt class="w-20 py-.5 px-1.5 bg-grey-40">{{ __('X') }}</dt>
+                        <dd class="w-20 py-.5 px-1.5 text-right">{{ value.x }}px</dd>
+                    </div>
+                    <div class="flex border-1 border-grey-40 rounded mt-.5">
+                        <dt class="w-20 py-.5 px-1.5 bg-grey-40">{{ __('Y') }}</dt>
+                        <dd class="w-20 py-.5 px-1.5 text-right">{{ value.y }}px</dd>
+                    </div>
+                    <div class="flex border-1 border-grey-40 rounded mt-.5">
+                        <dt class="w-20 py-.5 px-1.5 bg-grey-40">{{ __('Width') }}</dt>
+                        <dd class="w-20 py-.5 px-1.5 text-right">{{ value.width }}px</dd>
+                    </div>
+                    <div class="flex border-1 border-grey-40 rounded mt-.5">
+                        <dt class="w-20 py-.5 px-1.5 bg-grey-40">{{ __('Height') }}</dt>
+                        <dd class="w-20 py-.5 px-1.5 text-right">{{ value.height }}px</dd>
+                    </div>
+                </dl>
+            </div>
         </div>
     </div>
 </template>
@@ -25,10 +48,7 @@ export default {
             type: String,
             required: true,
         },
-        aspectRatio: {
-            type: Number,
-            required: true,
-        },
+        aspectRatio: Number,
     },
     data() {
         return {
@@ -45,9 +65,6 @@ export default {
             }
 
             return null
-        },
-        previewStyle() {
-            return { paddingBottom: `${100 / this.aspectRatio}%` }
         },
     },
     mounted() {
@@ -96,5 +113,11 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+.border-1 {
+    border-width: 1px;
+}
+.w-20 {
+    width: 5rem;
 }
 </style>
