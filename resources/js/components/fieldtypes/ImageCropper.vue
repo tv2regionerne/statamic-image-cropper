@@ -23,7 +23,7 @@
             </div>
         </stack>
     </div>
-    <div v-else v-text="__('Select an image to start cropping.')" />
+    <div v-else v-text="message" />
 </template>
 
 <script>
@@ -62,10 +62,16 @@ export default {
 
             return parent.meta
         },
+        sourceField() {
+            return this.sourceMeta[this.config.source]
+        },
         source() {
-            const asset = this.sourceMeta[this.config.source].data?.[0]
+            const asset = this.sourceField?.data?.[0]
 
             return asset?.isImage ? asset.url : null
+        },
+        message() {
+            return this.sourceField ? __('Select an image to start cropping.') : __('Image source field was not found.')
         },
     },
     watch: {
