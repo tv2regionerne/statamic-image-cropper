@@ -21,12 +21,12 @@ handle: crops
 field:
   type: image_cropper
   display: Crops
+  show_details: true
   source: image
   dimensions:
-    '1_1': 1/1
     '16_9': 16/9
-    '3_4': 3/4
-    '4_1': 4/1
+    '1_1': 1/1
+    freeform: Freeform
 ```
 
 ## How to Install

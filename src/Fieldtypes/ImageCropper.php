@@ -38,7 +38,7 @@ class ImageCropper extends Fieldtype
             'dimensions' => [
                 'type' => 'array',
                 'display' => __('Dimensions'),
-                'instructions' => __('List of dimensions with key and label like `16_9` and `16/9`'),
+                'instructions' => __('Dimensions with key like `16_9` for aspect ratio or free form otherwise.'),
                 'key_header' => __('Key'),
                 'value_header' => __('Label'),
                 'add_button' => __('Add Dimension'),
