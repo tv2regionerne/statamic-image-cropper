@@ -16,12 +16,19 @@ class ImageCropper extends Fieldtype
     protected function configFieldItems(): array
     {
         return [
+            'show_details' => [
+                'type' => 'toggle',
+                'display' => __('Show Details'),
+                'instructions' => __('Whether additional details should be shown during cropping.'),
+                'default' => true,
+                'width' => 50,
+            ],
             'source' => [
                 'type' => 'text',
                 'display' => __('Image Source Field'),
                 'instructions' => __('What image field handle the cropper should use.'),
                 'default' => 'image',
-                'width' => 25,
+                'width' => 50,
                 'validate' => [
                     'required',
                 ],
@@ -33,7 +40,7 @@ class ImageCropper extends Fieldtype
                 'key_header' => __('Key'),
                 'value_header' => __('Label'),
                 'add_button' => __('Add Dimension'),
-                'width' => 25,
+                'width' => 50,
                 'validate' => [
                     'required',
                 ],

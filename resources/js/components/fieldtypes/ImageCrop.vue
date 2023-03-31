@@ -13,7 +13,7 @@
             <div class="flex">
                 <button class="btn mt-2" @click="handleReset">{{ __('Reset') }}</button>
 
-                <dl class="inline-block mt-2 ml-2 text-sm" v-if="value">
+                <dl class="inline-block mt-2 ml-2 text-sm" v-if="showDetails && value">
                     <div class="flex border-1 border-grey-40 rounded">
                         <dt class="w-20 py-.5 px-1.5 bg-grey-40">{{ __('X') }}</dt>
                         <dd class="w-20 py-.5 px-1.5 text-right">{{ value.x }}px</dd>
@@ -49,6 +49,10 @@ export default {
             required: true,
         },
         aspectRatio: Number,
+        showDetails: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {

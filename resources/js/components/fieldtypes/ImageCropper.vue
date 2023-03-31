@@ -14,7 +14,12 @@
 
         <stack v-if="cropper" name="crop-editor" full>
             <div class="flex flex-col bg-white h-full p-3">
-                <ImageCrop v-model="shadow" :source="source" :aspect-ratio="dimension.ratio" />
+                <ImageCrop
+                    v-model="shadow"
+                    :source="source"
+                    :aspect-ratio="dimension.ratio"
+                    :show-details="config.show_details"
+                />
 
                 <div class="mt-2 -mx-1 text-right">
                     <button class="btn mx-1" @click="closeCropper">{{ __('Cancel') }}</button>
