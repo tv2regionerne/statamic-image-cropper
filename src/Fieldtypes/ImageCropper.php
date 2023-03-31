@@ -7,7 +7,9 @@ use Statamic\Fields\Fieldtype;
 class ImageCropper extends Fieldtype
 {
     protected $defaultable = true;
+
     protected $categories = ['media'];
+
     protected $icon = 'assets';
 
     /**
