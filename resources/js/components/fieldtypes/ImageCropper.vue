@@ -1,6 +1,6 @@
 <template>
     <div v-if="source">
-        <div class="buttons -mx-.5">
+        <div class="buttons space-x-1">
             <button
                 v-for="dimension in dimensions"
                 :key="dimension.key"

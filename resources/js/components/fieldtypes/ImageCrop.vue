@@ -1,11 +1,11 @@
 <template>
-    <div class="-mx-1 flex h-full">
-        <div class="field-w-3/4 px-1">
+    <div class="space-x-1 flex h-full">
+        <div class="blueprint-section-field-w-3/4 px-1">
             <div class="relative mx-auto h-full" :style="containerStyle">
-                <img ref="cropper" :src="source" class="media" />
+                <img ref="cropper" :src="source" class="object-cover" />
             </div>
         </div>
-        <div class="field-w-1/4 px-1">
+        <div class="blueprint-section-field-w-1/4 px-1">
             <div ref="preview" class="overflow-hidden">
                 <img :src="source" />
             </div>
@@ -15,20 +15,20 @@
 
                 <dl class="ml-2 mt-2 inline-block text-sm" v-if="showDetails && value">
                     <div class="border-1 border-grey-40 flex rounded">
-                        <dt class="py-.5 bg-grey-40 w-20 px-1.5">{{ __('X') }}</dt>
-                        <dd class="py-.5 w-20 px-1.5 text-right">{{ value.x }}px</dd>
+                        <dt class="py-1 bg-grey-40 w-20 px-1.5">{{ __('X') }}</dt>
+                        <dd class="py-1 w-20 px-1.5 text-right">{{ value.x }}px</dd>
                     </div>
-                    <div class="border-1 border-grey-40 mt-.5 flex rounded">
-                        <dt class="py-.5 bg-grey-40 w-20 px-1.5">{{ __('Y') }}</dt>
-                        <dd class="py-.5 w-20 px-1.5 text-right">{{ value.y }}px</dd>
+                    <div class="border-1 border-grey-40 mt-1 flex rounded">
+                        <dt class="py-1 bg-grey-40 w-20 px-1.5">{{ __('Y') }}</dt>
+                        <dd class="py-1 w-20 px-1.5 text-right">{{ value.y }}px</dd>
                     </div>
-                    <div class="border-1 border-grey-40 mt-.5 flex rounded">
-                        <dt class="py-.5 bg-grey-40 w-20 px-1.5">{{ __('Width') }}</dt>
-                        <dd class="py-.5 w-20 px-1.5 text-right">{{ value.width }}px</dd>
+                    <div class="border-1 border-grey-40 mt-1 flex rounded">
+                        <dt class="py-1 bg-grey-40 w-20 px-1.5">{{ __('Width') }}</dt>
+                        <dd class="py-1 w-20 px-1.5 text-right">{{ value.width }}px</dd>
                     </div>
-                    <div class="border-1 border-grey-40 mt-.5 flex rounded">
-                        <dt class="py-.5 bg-grey-40 w-20 px-1.5">{{ __('Height') }}</dt>
-                        <dd class="py-.5 w-20 px-1.5 text-right">{{ value.height }}px</dd>
+                    <div class="border-1 border-grey-40 mt-1 flex rounded">
+                        <dt class="py-1 bg-grey-40 w-20 px-1.5">{{ __('Height') }}</dt>
+                        <dd class="py-1 w-20 px-1.5 text-right">{{ value.height }}px</dd>
                     </div>
                 </dl>
             </div>
@@ -113,7 +113,7 @@
 </script>
 
 <style scoped>
-    .media {
+    .object-cover {
         max-width: 100%;
         max-height: 100%;
         position: absolute;

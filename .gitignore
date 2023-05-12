@@ -2,3 +2,4 @@ node_modules
 public/hot
 vendor
 .DS_Store
+.idea

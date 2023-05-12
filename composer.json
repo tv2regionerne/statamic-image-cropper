@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "statamic/cms": "3.4.*"
+        "statamic/cms": "^4.0"
     },
     "autoload": {
         "psr-4": {
