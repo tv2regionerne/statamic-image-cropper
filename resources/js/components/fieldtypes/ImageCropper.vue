@@ -48,7 +48,7 @@
         },
         computed: {
             dimensions() {
-                return Object.entries(this.config.dimensions).map(([key, label]) => {
+                return Object.entries(this.meta.dimensions).map(([key, label]) => {
                     let ratio = null
                     if (key.includes('_')) {
                         const [width, height] = key.split('_')
@@ -97,7 +97,7 @@
         },
         methods: {
             prepareCrops(value) {
-                const crops = Object.assign({}, ...Object.keys(this.config.dimensions).map(key => ({ [key]: null })))
+                const crops = Object.assign({}, ...Object.keys(this.meta.dimensions).map(key => ({ [key]: null })))
 
                 return value ? Object.assign(crops, value) : crops
             },
