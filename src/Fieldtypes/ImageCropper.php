@@ -115,7 +115,7 @@ class ImageCropper extends Fieldtype
      */
     protected function getDimensions()
     {
-        if ($this->config('mode') === 'manual') {
+        if ($this->config('mode', 'manual') === 'manual') {
             return $this->config('dimensions');
         }
 
