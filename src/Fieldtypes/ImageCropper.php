@@ -2,6 +2,7 @@
 
 namespace Tv2regionerne\StatamicImageCropper\Fieldtypes;
 
+use Statamic\Facades\Entry;
 use Statamic\Facades\Term;
 use Statamic\Fields\Fieldtype;
 
@@ -45,6 +46,7 @@ class ImageCropper extends Fieldtype
                 'options' => [
                     'manual' => __('Manual'),
                     'taxonomy' => __('Taxonomy'),
+                    'collection' => __('Collection'),
                 ],
             ],
             'dimensions' => [
@@ -68,11 +70,26 @@ class ImageCropper extends Fieldtype
                 'instructions' => __('The taxonomy to use for dimensions.'),
                 'max_items' => 1,
                 'width' => 50,
+                'mode' => 'select',
                 'validate' => [
                     'required_if:mode,taxonomy',
                 ],
                 'if' => [
                     'mode' => 'taxonomy',
+                ],
+            ],
+            'collection' => [
+                'type' => 'collections',
+                'display' => __('Collection'),
+                'instructions' => __('The collection to use for dimensions.'),
+                'max_items' => 1,
+                'width' => 50,
+                'mode' => 'select',
+                'validate' => [
+                    'required_if:mode,collection',
+                ],
+                'if' => [
+                    'mode' => 'collection',
                 ],
             ],
         ];
@@ -115,15 +132,21 @@ class ImageCropper extends Fieldtype
      */
     protected function getDimensions()
     {
-        if ($this->config('mode', 'manual') === 'manual') {
+        $mode = $this->config('mode', 'manual');
+
+        if ($mode === 'manual') {
             return $this->config('dimensions');
         }
 
-        return Term::query()
-            ->where('taxonomy', $this->config('taxonomy'))
-            ->get()
-            ->mapWithKeys(function ($term) {
-                return [$term->slug() => $term->title()];
+        if ($mode == 'taxonomy') {
+            $query = Term::query()->where('taxonomy', $this->config('taxonomy'));
+        } elseif ($mode == 'collection') {
+            $query = Entry::query()->where('collection', $this->config('collection'));
+        }
+
+        return $query->get()
+            ->mapWithKeys(function ($item) {
+                return [$item->slug => $item->title];
             })
             ->all();
     }
