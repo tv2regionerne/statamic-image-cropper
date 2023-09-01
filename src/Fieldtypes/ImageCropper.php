@@ -40,13 +40,13 @@ class ImageCropper extends Fieldtype
             'mode' => [
                 'type' => 'button_group',
                 'display' => __('Mode'),
-                'instructions' => __('Wheher to use manual or taxonomy based dimensions.'),
+                'instructions' => __('Wheher to use manual, collection or taxonomy based dimensions.'),
                 'default' => 'manual',
                 'width' => 50,
                 'options' => [
                     'manual' => __('Manual'),
-                    'taxonomy' => __('Taxonomy'),
                     'collection' => __('Collection'),
+                    'taxonomy' => __('Taxonomy'),
                 ],
             ],
             'dimensions' => [
@@ -64,6 +64,20 @@ class ImageCropper extends Fieldtype
                     'mode' => 'manual',
                 ],
             ],
+            'collection' => [
+                'type' => 'collections',
+                'display' => __('Collection'),
+                'instructions' => __('The collection to use for dimensions.'),
+                'max_items' => 1,
+                'width' => 50,
+                'mode' => 'select',
+                'validate' => [
+                    'required_if:mode,collection',
+                ],
+                'if' => [
+                    'mode' => 'collection',
+                ],
+            ],
             'taxonomy' => [
                 'type' => 'taxonomies',
                 'display' => __('Taxonomy'),
@@ -78,18 +92,24 @@ class ImageCropper extends Fieldtype
                     'mode' => 'taxonomy',
                 ],
             ],
-            'collection' => [
-                'type' => 'collections',
-                'display' => __('Collection'),
-                'instructions' => __('The collection to use for dimensions.'),
-                'max_items' => 1,
+            'key_field' => [
+                'type' => 'text',
+                'display' => __('Key Field'),
+                'instructions' => __('Which field to use for the key.'),
+                'placeholder' => 'slug',
                 'width' => 50,
-                'mode' => 'select',
-                'validate' => [
-                    'required_if:mode,collection',
+                'unless' => [
+                    'mode' => 'manual',
                 ],
-                'if' => [
-                    'mode' => 'collection',
+            ],
+            'label_field' => [
+                'type' => 'text',
+                'display' => __('Label Field'),
+                'instructions' => __('Which field to use for the label.'),
+                'placeholder' => 'title',
+                'width' => 50,
+                'unless' => [
+                    'mode' => 'manual',
                 ],
             ],
         ];
@@ -144,10 +164,11 @@ class ImageCropper extends Fieldtype
             $query = Entry::query()->where('collection', $this->config('collection'));
         }
 
+        $keyField = $this->config('key_field', 'slug');
+        $labelField = $this->config('label_field', 'title');
+
         return $query->get()
-            ->mapWithKeys(function ($item) {
-                return [$item->slug => $item->title];
-            })
+            ->mapWithKeys(fn ($item) => [$item->{$keyField} => $item->{$labelField}])
             ->all();
     }
 }
