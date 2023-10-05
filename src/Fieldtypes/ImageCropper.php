@@ -2,6 +2,7 @@
 
 namespace Tv2regionerne\StatamicImageCropper\Fieldtypes;
 
+use Statamic\Facades\Entry;
 use Statamic\Facades\Term;
 use Statamic\Fields\Fieldtype;
 
@@ -39,11 +40,12 @@ class ImageCropper extends Fieldtype
             'mode' => [
                 'type' => 'button_group',
                 'display' => __('Mode'),
-                'instructions' => __('Wheher to use manual or taxonomy based dimensions.'),
+                'instructions' => __('Wheher to use manual, collection or taxonomy based dimensions.'),
                 'default' => 'manual',
                 'width' => 50,
                 'options' => [
                     'manual' => __('Manual'),
+                    'collection' => __('Collection'),
                     'taxonomy' => __('Taxonomy'),
                 ],
             ],
@@ -62,17 +64,52 @@ class ImageCropper extends Fieldtype
                     'mode' => 'manual',
                 ],
             ],
+            'collection' => [
+                'type' => 'collections',
+                'display' => __('Collection'),
+                'instructions' => __('The collection to use for dimensions.'),
+                'max_items' => 1,
+                'width' => 50,
+                'mode' => 'select',
+                'validate' => [
+                    'required_if:mode,collection',
+                ],
+                'if' => [
+                    'mode' => 'collection',
+                ],
+            ],
             'taxonomy' => [
                 'type' => 'taxonomies',
                 'display' => __('Taxonomy'),
                 'instructions' => __('The taxonomy to use for dimensions.'),
                 'max_items' => 1,
                 'width' => 50,
+                'mode' => 'select',
                 'validate' => [
                     'required_if:mode,taxonomy',
                 ],
                 'if' => [
                     'mode' => 'taxonomy',
+                ],
+            ],
+            'key_field' => [
+                'type' => 'text',
+                'display' => __('Key Field'),
+                'instructions' => __('Which field to use for the key.'),
+                'placeholder' => 'slug',
+                'width' => 50,
+                'unless' => [
+                    'mode' => 'manual',
+                ],
+            ],
+            'label_field' => [
+                'type' => 'text',
+                'display' => __('Label Field'),
+                'instructions' => __('Which field to use for the label.'),
+                'placeholder' => 'title',
+                'width' => 50,
+                'unless' => [
+                    'mode' => 'manual',
                 ],
             ],
         ];
@@ -115,16 +152,23 @@ class ImageCropper extends Fieldtype
      */
     protected function getDimensions()
     {
-        if ($this->config('mode', 'manual') === 'manual') {
+        $mode = $this->config('mode', 'manual');
+
+        if ($mode === 'manual') {
             return $this->config('dimensions');
         }
 
-        return Term::query()
-            ->where('taxonomy', $this->config('taxonomy'))
-            ->get()
-            ->mapWithKeys(function ($term) {
-                return [$term->slug() => $term->title()];
-            })
+        if ($mode == 'taxonomy') {
+            $query = Term::query()->where('taxonomy', $this->config('taxonomy'));
+        } elseif ($mode == 'collection') {
+            $query = Entry::query()->where('collection', $this->config('collection'));
+        }
+
+        $keyField = $this->config('key_field', 'slug');
+        $labelField = $this->config('label_field', 'title');
+
+        return $query->get()
+            ->mapWithKeys(fn ($item) => [$item->{$keyField} => $item->{$labelField}])
             ->all();
     }
 }
