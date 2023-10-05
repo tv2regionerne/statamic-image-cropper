@@ -76,7 +76,7 @@
             source() {
                 const asset = this.sourceField?.data?.[0]
 
-                return asset?.isImage ? asset.url : null
+                return asset?.isImage ? (asset.url || asset.downloadUrl) : null
             },
             message() {
                 return this.sourceField
