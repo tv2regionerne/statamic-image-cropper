@@ -40,7 +40,7 @@ class ImageCropper extends Fieldtype
             'mode' => [
                 'type' => 'button_group',
                 'display' => __('Mode'),
-                'instructions' => __('Wheher to use manual, collection or taxonomy based dimensions.'),
+                'instructions' => __('Whether to use manual, collection or taxonomy based dimensions.'),
                 'default' => 'manual',
                 'width' => 50,
                 'options' => [
