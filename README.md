@@ -49,5 +49,8 @@ In a template you can then use the crop as so:
 ```antlers
 <img src="{{ glide:image :crop="crops:16_9:crop" }}" />
 ```
+This line of code means that you're applying a cropping action to your image. The part :crop="crops:16_9:crop" tells the system two main things:
+* `crops` is a reference (or "handle") to your specific Image Cropper setting. Remember, you should replace crops with whatever name you've given to your Image Cropper field.
+* `16_9` indicates the aspect ratio for the crop. In this case, it's set to 16:9, which is a common widescreen format. You can change this to any other ratio you need for your image.
 
 Enjoy cropping away!
