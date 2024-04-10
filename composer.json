@@ -11,15 +11,10 @@
             "name": "Sylvester Damgaard",
             "email": "syda@tv2reg.dk",
             "role": "Systems Architect"
-        },
-        {
-            "name": "Frederik Sauer",
-            "email": "fsa@dwarf.dk",
-            "role": "Developer"
         }
     ],
     "require": {
-        "statamic/cms": "^4.0"
+        "statamic/cms": "^4.0 || ^5.0"
     },
     "autoload": {
         "psr-4": {
