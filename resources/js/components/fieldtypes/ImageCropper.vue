@@ -12,7 +12,7 @@
             </button>
         </div>
 
-        <stack v-if="cropper" name="crop-editor" full>
+        <stack v-if="cropper" name="crop-editor" full @closed="closeCropper">
             <div class="flex h-full flex-col bg-white p-3">
                 <ImageCrop
                     v-model="shadow"
